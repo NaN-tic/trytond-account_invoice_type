@@ -31,6 +31,7 @@ class AccountInvoiceTypeTestCase(ModuleTestCase):
         line.unit_price = Decimal('12.00')
         line.amount = line.on_change_with_amount()
         invoice.lines = [line]
+        invoice.on_change_lines()
         self.assertEqual(invoice.on_change_with_invoice_type(), 'out_invoice')
 
         line = Line(**lvalues)
@@ -38,6 +39,7 @@ class AccountInvoiceTypeTestCase(ModuleTestCase):
         line.unit_price = Decimal('-12.00')
         line.amount = line.on_change_with_amount()
         invoice.lines = [line]
+        invoice.on_change_lines()
         self.assertEqual(invoice.on_change_with_invoice_type(), 'out_credit_note')
 
 
