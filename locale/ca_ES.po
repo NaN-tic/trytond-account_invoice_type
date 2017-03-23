@@ -1,0 +1,23 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.invoice,invoice_type:"
+msgid "Invoice Type"
+msgstr "Tipus de factura"
+
+msgctxt "selection:account.invoice,invoice_type:"
+msgid "Credit Note"
+msgstr "Abonament"
+
+msgctxt "selection:account.invoice,invoice_type:"
+msgid "Invoice"
+msgstr "Factura"
+
+msgctxt "selection:account.invoice,invoice_type:"
+msgid "Supplier Credit Note"
+msgstr "Abonament de proveïdor"
+
+msgctxt "selection:account.invoice,invoice_type:"
+msgid "Supplier Invoice"
+msgstr "Factura de proveïdor"
