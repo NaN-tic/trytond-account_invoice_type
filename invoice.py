@@ -21,15 +21,14 @@ class Invoice:
     invoice_type = fields.Function(fields.Selection(_TYPE, 'Invoice Type'),
         'on_change_with_invoice_type')
 
-    @fields.depends('type')
+    @fields.depends('type', 'untaxed_amount')
     def on_change_with_invoice_type(self, name=None):
-        if all(l.amount <= 0 for l in self.lines):
+        if self.untaxed_amount < 0:
             return '%s_credit_note' % self.type
-        else:
-            return '%s_invoice' % self.type
+        return '%s_invoice' % self.type
 
     def invoice_type_criteria(self):
         super(Invoice, self).invoice_type_criteria()
-        if self.total_amount <= 0:
+        if self.untaxed_amount < 0:
             return '_credit_note'
         return '_invoice'
