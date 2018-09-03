@@ -23,7 +23,7 @@ class Invoice:
 
     @fields.depends('type', 'untaxed_amount', 'lines')
     def on_change_with_invoice_type(self, name=None):
-        if self.untaxed_amount < 0:
+        if self.untaxed_amount and self.untaxed_amount < 0:
             return '%s_credit_note' % self.type
         return '%s_invoice' % self.type
 
