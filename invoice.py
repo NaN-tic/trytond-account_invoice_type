@@ -15,8 +15,7 @@ _TYPE = [
 ]
 
 
-class Invoice:
-    __metaclass__ = PoolMeta
+class Invoice(metaclass=PoolMeta):
     __name__ = 'account.invoice'
     invoice_type = fields.Function(fields.Selection(_TYPE, 'Invoice Type'),
         'on_change_with_invoice_type')
