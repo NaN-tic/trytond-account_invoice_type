@@ -26,8 +26,13 @@ class Invoice(metaclass=PoolMeta):
             return '%s_credit_note' % self.type
         return '%s_invoice' % self.type
 
-    def invoice_type_criteria(self):
-        super(Invoice, self).invoice_type_criteria()
-        if self.untaxed_amount < 0:
-            return '_credit_note'
-        return '_invoice'
+    @property
+    def _sequence_field(self):
+        'Override the behaviour of _sequence_field in account_invoice module '
+        'by considering as credit note invoices with total_amount < 0'
+        field = self.type
+        if self.total_amount < 0:
+            field += '_credit_note'
+        else:
+            field += '_invoice'
+        return field + '_sequence'
