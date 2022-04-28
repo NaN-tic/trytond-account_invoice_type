@@ -1,17 +1,16 @@
-# This file is part account_invoice_type module for Tryton.
-# The COPYRIGHT file at the top level of this repository contains
-# the full copyright notices and license terms.
+
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
+
 from decimal import Decimal
-import unittest
-import trytond.tests.test_tryton
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
 from trytond.pool import Pool
+from trytond.modules.company.tests import CompanyTestMixin
 
 
-class AccountInvoiceTypeTestCase(ModuleTestCase):
-    'Test Account Invoice Type module'
+class AccountInvoiceTypeTestCase(CompanyTestMixin, ModuleTestCase):
+    'Test AccountInvoiceType module'
     module = 'account_invoice_type'
-
 
     @with_transaction()
     def test_invoice_type(self):
@@ -42,8 +41,4 @@ class AccountInvoiceTypeTestCase(ModuleTestCase):
         self.assertEqual(invoice.on_change_with_invoice_type(), 'out_credit_note')
 
 
-def suite():
-    suite = trytond.tests.test_tryton.suite()
-    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(
-            AccountInvoiceTypeTestCase))
-    return suite
+del ModuleTestCase
