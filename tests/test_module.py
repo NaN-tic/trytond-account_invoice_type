@@ -22,6 +22,7 @@ class AccountInvoiceTypeTestCase(CompanyTestMixin, ModuleTestCase):
         values = Invoice.default_get(Invoice._fields.keys(),
             with_rec_name=False)
         invoice = Invoice(**values)
+        invoice.type = 'out'
         lvalues = Line.default_get(Line._fields.keys(), with_rec_name=False)
 
         line = Line(**lvalues)
